@@ -8,7 +8,20 @@ const mainComponent = () => {
         <div className="banner_part">
             <Banner />
         </div>
-        <Slide />
+        <div className="slide_part">
+            <div className="left_slide">
+                <Slide title="Independence Day Offers"/>
+            </div>
+            <div className="right_slide">
+                <h3>Happy Independence Day</h3>
+                <img src='https://upload.wikimedia.org/wikipedia/commons/3/37/Flag_India.svg' />
+                <a href='#'>Check out our new products</a>
+            </div>
+        </div>
+        <Slide title="Today's Deal"/>
+        <Slide title="Best Seller"/>
+        <Slide title="Upto 80% off"/>
+        {/* <Slide /> */}
     </div>
   )
 }

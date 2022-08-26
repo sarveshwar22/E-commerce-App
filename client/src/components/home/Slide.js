@@ -25,15 +25,15 @@ const responsive = {
     }
   };
 
-const Slide = () => {
+const Slide = ({title}) => {
   return (
     <div className='products_section'>
         <div className="products_deal">
-            <h3>Independence Day Offers</h3>
+            <h3>{title}</h3>
             <button className='view_btn'>View All</button>
         </div>
         <Divider />
-        <Carousel responsive={responsive} infinite={true} draggable={false} swipeable={true} showDots={false} centerMode={true} autoPlay={true} autoPlaySpeed={1500} keyBoardControl={true} removeArrowOnDeviceType={["tablet", "mobile"]} dotListClass="custom-dot-list-style" itemClass="carousel-item-padding-40-px" containerClass="carousel-container">
+        <Carousel responsive={responsive} infinite={true} draggable={false} swipeable={true} showDots={false} centerMode={true} autoPlay={true} autoPlaySpeed={1000} keyBoardControl={true} removeArrowOnDeviceType={["tablet", "mobile"]} dotListClass="custom-dot-list-style" itemClass="carousel-item-padding-40-px" containerClass="carousel-container">
             {
                 products.map((e)=>{
                     return (
