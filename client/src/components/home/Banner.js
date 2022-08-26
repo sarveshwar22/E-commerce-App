@@ -11,7 +11,7 @@ const data = [
 
 const Banner = () => {
   return (
-    <Carousel className='carasousel'>
+    <Carousel className='carasousel' autoPlay={true} animation='slide' indicators={false} cycleNavigation={true} >
         {
             data.map((imag,i)=>{
                 return (
