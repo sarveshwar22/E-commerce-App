@@ -1,8 +1,27 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './signIn.css'
+import { useState } from 'react'
 
-const signUp = () => {
+const SignUp = () => {
+    const [udata,setUdata] = useState({
+        fname:"",
+        email:"",
+        mobile:"",
+        password:"",
+        cpassword:""
+    });
+    
+    const addData = (e)=>{
+        const {name,value} = e.target;
+        
+        setUdata(()=>{
+            return {...udata,
+                [name]:value
+                }
+            })
+    }
+    
   return (
     <>
         <section>
@@ -16,27 +35,27 @@ const signUp = () => {
                         
                         <div className="form_data">
                             <label htmlFor=''>Your Name</label>
-                            <input type="text" name='fname' id='fname'/>
+                            <input type="text" onChange={addData} value={udata.fname} name='fname' id='fname'/>
                         </div>
                         
                         <div className="form_data">
                             <label htmlFor=''>Email</label>
-                            <input type="text" name='email' id='email'/>
+                            <input type="text" onChange={addData} value={udata.email} name='email' id='email'/>
                         </div>
                         
                         <div className="form_data">
                             <label htmlFor=''>Phone Number</label>
-                            <input type="text" name='mobile' id='mobile'/>
+                            <input type="text" onChange={addData} value={udata.mobile} name='mobile' id='mobile'/>
                         </div>
                         
                         <div className="form_data">
                             <label htmlFor=''>Password</label>
-                            <input type="text" name='password' id='password' placeholder='At least 6 digits'/>
+                            <input type="text" onChange={addData} value={udata.password} name='password' id='password' placeholder='At least 6 digits'/>
                         </div>
                         
                         <div className="form_data">
                             <label htmlFor=''>Re-Enter Password</label>
-                            <input type="text" name='password' id='password'/>
+                            <input type="text" onChange={addData} value={udata.cpassword} name='cpassword' id='cpassword'/>
                         </div>
                         
                         
@@ -56,4 +75,4 @@ const signUp = () => {
   )
 }
 
-export default signUp
+export default SignUp

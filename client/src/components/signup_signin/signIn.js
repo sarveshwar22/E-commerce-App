@@ -1,8 +1,26 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './signIn.css'
 
-const signIn = () => {
+
+const SignIn = () => {
+
+    const [logdata,setData] = useState({
+        email:"",
+        password:""
+    });
+    
+    const addData = (e)=>{
+        const {name,value} = e.target;
+        
+        setData(()=>{
+        return {...logdata,
+            [name]:value
+            }
+        })
+        
+    }
+
   return (
     <>
         <section>
@@ -15,14 +33,14 @@ const signIn = () => {
                         <h1>Sign In</h1>
                         <div className="form_data">
                             <label htmlFor=''>Email</label>
-                            <input type="text" name='email' id='email'/>
+                            <input type="text" onChange={addData} value={logdata.email}  name='email' id='email' />
                         </div>
                         
                         
                         
                         <div className="form_data">
                             <label htmlFor=''>Password</label>
-                            <input type="text" name='password' id='password'/>
+                            <input type="text" onChange={addData} value={logdata.password} name='password' id='password' />
                         </div>
                         
                         
@@ -42,4 +60,4 @@ const signIn = () => {
   )
 }
 
-export default signIn
+export default SignIn
