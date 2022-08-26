@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import './signIn.css'
 
 const signIn = () => {
@@ -33,7 +34,7 @@ const signIn = () => {
                 
                 <div className="create_accountinfo">
                     <p>New to TechZen?</p>
-                    <button>Create your TechZen account</button>
+                    <NavLink to="/register"><button>Create your TechZen account</button></NavLink>
                 </div>
             </div>
         </section>

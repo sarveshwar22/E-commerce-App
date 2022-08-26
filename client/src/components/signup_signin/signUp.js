@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import './signIn.css'
 
 const signUp = () => {
@@ -41,7 +42,10 @@ const signUp = () => {
                         
                         <button className="signin_btn">Sign Up</button>
                         
-                        
+                        <div className="signin_info">
+                            <p>Already have an account?</p>
+                            <NavLink to="/login">Sign In</NavLink>
+                        </div>
                     </form>
                 </div>
                 
