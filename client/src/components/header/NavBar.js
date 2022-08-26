@@ -1,8 +1,9 @@
 import React from 'react'
 import './NavBar.css'
 import SearchIcon from '@mui/icons-material/Search';
-
-
+import Avatar from '@mui/material/Avatar';
+import Badge from '@mui/material/Badge';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const NavBar = () => {
   return (
@@ -20,8 +21,23 @@ const NavBar = () => {
                     </div>
                 </div>
             </div>
-            <div className='right'>
-            
+            <div className="right">
+                <div className="nav_btn">
+                    <a href="https://www.google.co.in/">Sign In</a>
+                </div>    
+                    
+                    
+                    
+                
+                
+                <div className="cart_btn">
+                    <Badge badgeContent={4} color = "secondary">
+                        <ShoppingCartIcon id="icon" color='white' />
+                    </Badge>
+                    <p>Cart</p>
+                    
+                </div>
+                <Avatar className='avtar'/>
             </div>
         </nav>
     </header>

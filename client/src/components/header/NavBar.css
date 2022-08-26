@@ -50,7 +50,7 @@ header nav .left input{
 
 header nav .left .search_icon{
     background-color: #08ddfd;
-    height: 38px;
+    height: 40px;
     width: 40px;
     display: flex;
     justify-content: center;
@@ -99,7 +99,7 @@ header nav .right .cart_btn{
     margin-top: 2px;
     padding: 8px;
     border-radius: 2px;
-    border: 1px solid #131921;
+    border: 1px solid #5e6063;
     align-items: center;
     justify-content: space-between;
     margin-right: 3px;
@@ -111,12 +111,12 @@ header nav .right .cart_btn:hover{
 
 header nav .right .cart_btn #icon{
     margin-right: 10px;
-    color: #fff;
+    color: white;
     margin-top: 2px;
 }
 
 header nav .right .cart_btn p{
-    color: #fff;
+    color: white;
     font-weight: 500;
     font-size: 12px;
     margin-top: 11px;
