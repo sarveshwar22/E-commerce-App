@@ -7,7 +7,8 @@ import SignIn from './components/signup_signin/signIn'
 import SignUp from './components/signup_signin/signUp';
 
 import {Routes,Route} from "react-router-dom"
-
+import Cart from './components/cart/Cart';
+import BuyNow from './components/buynow/BuyNow';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
         <Route path='/' element={<MainComponent />} />
         <Route path='/login' element={<SignIn />} />
         <Route path='/register' element={<SignUp />} />
+        <Route path='/getproductsone/:id' element={<Cart />} />
+        <Route path='/buynow' element={<BuyNow />} />
       </Routes>
       <Footer />
     </>
