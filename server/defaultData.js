@@ -9,7 +9,7 @@ const DefaultData = async()=>{
     }
     catch(error)
     {
-        console.log("error");
+        console.log("error"+error.message);
         
     }
 
