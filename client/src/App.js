@@ -1,7 +1,7 @@
 import './App.css';
 import NavBar from './components/header/NavBar';
 import NewNav from './components/newNavBar/newNav';
-import MainComponent from './components/home/mainComponent';
+import MainComp from './components/home/MainComp';
 import Footer from './components/footer/footer';
 import SignIn from './components/signup_signin/signIn'
 import SignUp from './components/signup_signin/signUp';
@@ -16,7 +16,7 @@ function App() {
       <NavBar />
       <NewNav />
       <Routes>
-        <Route path='/' element={<MainComponent />} />
+        <Route path='/' element={<MainComp />} />
         <Route path='/login' element={<SignIn />} />
         <Route path='/register' element={<SignUp />} />
         <Route path='/getproductsone/:id' element={<Cart />} />

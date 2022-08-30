@@ -5,7 +5,7 @@ import Slide from './Slide'
 const mainComponent = () => {
   return (
     <div className='home_section'>
-        <div className="banner_part">
+        <div className="banner_part"> 
             <Banner />
         </div>
         <div className="slide_part">
