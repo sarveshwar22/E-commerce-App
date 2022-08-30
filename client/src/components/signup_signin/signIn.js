@@ -1,6 +1,8 @@
 import React,{ useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './signIn.css'
+import {ToastContainer,toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const SignIn = () => {
@@ -21,6 +23,42 @@ const SignIn = () => {
         
     }
 
+
+    const senddata = async(e)=>{
+        e.preventDefault();
+        
+        const {email,password} = logdata;
+        const res = await fetch("/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email,
+              password
+            }),
+          });
+          
+          const data = await res.json();
+          console.log(data);
+          
+          if(res.status === 400 || !data)
+          {
+            //   alert("Please fill all the details correctly")
+              toast.warn("Please enter correct details",{
+                  position: "top-center"
+              })
+          }
+          else
+          {
+            //   alert("You are successfully registered")
+              toast.success("You are successfully logged in...",{
+                  position: "top-center"
+              })
+              setData({...logdata,email:"",password:""});
+          }
+        
+    }
   return (
     <>
         <section>
@@ -29,7 +67,7 @@ const SignIn = () => {
                     <h1>TechZen</h1>
                 </div>
                 <div className="sign_form">
-                    <form>
+                    <form method='POST'>
                         <h1>Sign In</h1>
                         <div className="form_data">
                             <label htmlFor=''>Email</label>
@@ -39,12 +77,12 @@ const SignIn = () => {
                         
                         
                         <div className="form_data">
-                            <label htmlFor=''>Password</label>
-                            <input type="text" onChange={addData} value={logdata.password} name='password' id='password' />
+                            <label htmlFor='password'>Password</label>
+                            <input type="password" onChange={addData} value={logdata.password} name='password' id='password' />
                         </div>
                         
                         
-                        <button className="signin_btn">Sign In</button>
+                        <button className="signin_btn" onClick={senddata}>Sign In</button>
                         
                         
                     </form>
@@ -55,6 +93,7 @@ const SignIn = () => {
                     <NavLink to="/register"><button>Create your TechZen account</button></NavLink>
                 </div>
             </div>
+            <ToastContainer />
         </section>
     </>
   )

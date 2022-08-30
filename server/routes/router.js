@@ -3,6 +3,9 @@ const router = new express.Router();
 
 const Products = require("../models/productsSchema")
 const USER = require("../models/userSchema");
+
+const bcrypt = require("bcryptjs");
+
 //products api
 router.get("/getproducts",async (req,res)=>{
     
@@ -70,6 +73,37 @@ router.post("/register",async(req,res)=>{
         }
     } catch (error) {
         
+    }
+})
+
+
+router.post("/login",async(req,res)=>{
+    const {email,password} = req.body;
+    if(!email || !password)
+    {
+        res.status(400).json({error:"Fill all the details properly"})
+    };
+    
+    try {
+        const userlogin = await USER.findOne({email:email});
+        // console.log(userlogin);
+        
+        if(userlogin)
+        {
+            const isMatch = await bcrypt.compare(password,userlogin.password);
+            console.log(isMatch);
+            
+            if(!isMatch)
+            {
+                res.status(400).json({error:"Invalid password"})
+            }
+            else
+            {
+                res.status(201).json(userlogin)
+            }
+        }
+    } catch (error) {
+        res.status(400).json({error:"Invalid Credentials"})
     }
 })
 
