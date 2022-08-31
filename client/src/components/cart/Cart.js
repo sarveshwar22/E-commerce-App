@@ -1,10 +1,14 @@
 import { Divider } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "./cart.css";
+import { LoginContext } from "../context/ContextProvider";
+
 
 const Cart = () => {
   const { id } = useParams("");
+  const history = useNavigate("");
+  const {account,setAccount} = useContext(LoginContext)
   
   const [inddata,setInddata] = useState([]);
   console.log(inddata);
@@ -48,7 +52,7 @@ const Cart = () => {
     });
     
     const data1 = await checkres.json();
-    console.log(data1+"frontend data");
+    console.log(data1);
     
     if(checkres.status === 401 || !data1)
     {
@@ -57,7 +61,9 @@ const Cart = () => {
     }
     else
     {
-      alert("Added to your cart")
+      // alert("Added to your cart")
+      history("/buynow")
+      setAccount(data1)
     }
   }
 
