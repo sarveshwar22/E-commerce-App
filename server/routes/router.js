@@ -93,6 +93,15 @@ router.post("/login",async(req,res)=>{
             const isMatch = await bcrypt.compare(password,userlogin.password);
             console.log(isMatch);
             
+            //generate token
+            const token = await userlogin.generateAuthToken();
+            console.log(token);
+            
+            res.cookie("TechZenWeb",token,{
+                expires: new Date(Date.now() + 900000),
+                httpOnly: true
+            })
+            
             if(!isMatch)
             {
                 res.status(400).json({error:"Invalid password"})
@@ -102,6 +111,12 @@ router.post("/login",async(req,res)=>{
                 res.status(201).json(userlogin)
             }
         }
+        else
+        {
+            
+            res.status(400).json({error:"Invalid Details"})
+        }
+        
     } catch (error) {
         res.status(400).json({error:"Invalid Credentials"})
     }
