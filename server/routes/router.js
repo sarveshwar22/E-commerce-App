@@ -5,6 +5,8 @@ const Products = require("../models/productsSchema")
 const USER = require("../models/userSchema");
 
 const bcrypt = require("bcryptjs");
+const authenticate = require("../middleware/authenticate")
+
 
 //products api
 router.get("/getproducts",async (req,res)=>{
@@ -119,6 +121,33 @@ router.post("/login",async(req,res)=>{
         
     } catch (error) {
         res.status(400).json({error:"Invalid Credentials"})
+    }
+})
+
+// add to cart api
+
+router.post("/addcart/:id", authenticate, async(req,res)=>{
+    try {
+        const {id} = req.params;
+        const cart = await Products.findOne({id:id});
+        console.log(cart+"CART");
+        
+        const UserContact = await USER.findOne({_id:req.userID})
+        
+        if(UserContact)
+        {
+            const cartData = await UserContact.addcartdata(cart);
+            await UserContact.save();
+            console.log(cartData);
+            res.status(201).json(UserContact);
+            
+        }
+        else
+        {
+            res.status(401).json({error:"Invalid User"})
+        }
+    } catch (error) {
+        res.status(401).json({error:"invalid user"});
     }
 })
 
