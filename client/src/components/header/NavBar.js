@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../context/ContextProvider';
 
 import IconButton from '@mui/material/IconButton';
@@ -13,12 +13,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Drawer from '@mui/material/Drawer';
 import Rightheader from './Rightheader';
 
+import {ToastContainer,toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const NavBar = () => {
 
   const {account,setAccount} = useContext(LoginContext);
   
+  
+  const history = useNavigate();
   const [dropen,setDropen] = useState(false);
   console.log(account);
   console.log("SUCESSSSS");
@@ -42,6 +46,33 @@ const NavBar = () => {
         setAccount(data);
     }
 }
+
+
+const logoutuser = async () => {
+    const res2 = await fetch("/logout", {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        credentials: "include"
+    });
+    const data2 = await res2.json();
+        // console.log(data2);
+
+        if (!res2.status === 201) {
+            const error = new Error(res2.error);
+            throw error;
+        } else {
+            history("/");
+            setAccount(false);
+            // setOpen(false)
+            toast.success("user Logout 😃!", {
+                position: "top-center"
+            });
+        }
+}
+
 
 const handleopen= ()=>{
     setDropen(true);
@@ -106,12 +137,12 @@ useEffect(() => {
                 
                 </NavLink>
                 }
-                    
+                   <ToastContainer /> 
                     <p>Cart</p>
                     
                 </div>
                 {account?
-                <Avatar className='avtar2'>
+                <Avatar className='avtar2' onClick = {logoutuser}>
                 {account.fname[0].toUpperCase()}
                 </Avatar>:<Avatar className='avtar'>
                 
