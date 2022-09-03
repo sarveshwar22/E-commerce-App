@@ -151,4 +151,65 @@ router.post("/addcart/:id", authenticate, async(req,res)=>{
     }
 })
 
+//get cart details
+
+router.get("/cartdetails",authenticate,async(req,res)=>{
+
+    try {
+        const buyuser = await USER.findOne({_id:req.userID})
+        res.status(201).json(buyuser);
+    } catch (error) {
+        console.log("error" + error);
+    }
+})
+
+
+
+// get user is login or not
+router.get("/validuser", authenticate, async (req, res) => {
+    try {
+        const validuserone = await User.findOne({ _id: req.userID });
+        res.status(201).json(validuserone);
+    } catch (error) {
+        console.log(error + "error for valid user");
+    }
+});
+
+// // for userlogout
+
+// router.get("/logout", authenicate, async (req, res) => {
+//     try {
+//         req.rootUser.tokens = req.rootUser.tokens.filter((curelem) => {
+//             return curelem.token !== req.token
+//         });
+
+//         res.clearCookie("eccomerce", { path: "/" });
+//         req.rootUser.save();
+//         res.status(201).json(req.rootUser.tokens);
+//         console.log("user logout");
+
+//     } catch (error) {
+//         console.log(error + "jwt provide then logout");
+//     }
+// });
+
+
+router.get("/remove/:id", authenticate, async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        req.rootUser.carts = req.rootUser.carts.filter((curval) => {
+            return curval.id != id
+        });
+
+        req.rootUser.save();
+        res.status(201).json(req.rootUser);
+
+    } catch (error) {
+        console.log("error"+error);
+        res.status(400).json(error);
+    }
+});
+
+
 module.exports = router;

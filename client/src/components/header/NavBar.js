@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import './NavBar.css'
 import SearchIcon from '@mui/icons-material/Search';
 import Avatar from '@mui/material/Avatar';
@@ -12,6 +12,29 @@ const NavBar = () => {
   const {account,setAccount} = useContext(LoginContext);
   console.log(account);
   console.log("SUCESSSSS");
+  
+  const getdetailsvaliduser = async () => {
+    const res = await fetch("/validuser", {
+        method: "GET",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+        },
+        credentials: "include"
+    });
+
+    const data = await res.json();
+    // console.log(data);
+
+    if (res.status !== 201) {
+        console.log("first login");
+    } else {
+        setAccount(data);
+    }
+}
+useEffect(() => {
+    getdetailsvaliduser()
+}, []);
 
   return (
     <header>
@@ -59,7 +82,7 @@ const NavBar = () => {
                     
                 </div>
                 {account?
-                <Avatar className='avtar'>
+                <Avatar className='avtar2'>
                 {account.fname[0].toUpperCase()}
                 </Avatar>:<Avatar className='avtar'>
                 
