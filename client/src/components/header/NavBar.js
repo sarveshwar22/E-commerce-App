@@ -97,7 +97,7 @@ useEffect(() => {
           </IconButton>
 
             <Drawer open={dropen} onClose={handledrclose}>
-                <Rightheader logclose={handledrclose}/>
+                <Rightheader logclose={handledrclose} logoutuser={logoutuser}/>
             </Drawer>
             
                 <div className='navlogo'>

@@ -20,7 +20,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 //         height: "300px"
 //     },
 // })
-const Rightheader = ({logclose}) => {
+const Rightheader = ({logclose,logoutuser}) => {
 
     const imgd = "https://upload.wikimedia.org/wikipedia/commons/3/37/Flag_India.svg"
 
@@ -56,12 +56,12 @@ const Rightheader = ({logclose}) => {
                 </div>
 
                 {
-                    // account ?
-                    //     <div className="flag">
-                    //         <LogoutIcon style={{ fontSize: 18, marginRight: 4 }} />
-                    //         <h3 onClick={() => userlog()} style={{ cursor: "pointer", fontWeight: 500 }}>Log Out</h3>
-                    //     </div>
-                    //     : <NavLink to="/login">Sign in</NavLink>
+                    account ?
+                        <div className="flag">
+                            <LogoutIcon style={{ fontSize: 18, marginRight: 4 }} />
+                            <h3 onClick={() => logoutuser()} style={{ cursor: "pointer", fontWeight: 500 }}>Log Out</h3>
+                        </div>
+                        : <NavLink to="/login">Sign in</NavLink>
                 }
 
 
